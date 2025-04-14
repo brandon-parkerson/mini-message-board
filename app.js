@@ -2,16 +2,20 @@ const path = require('node:path');
 const express = require('express');
 const app = express();
 
+let messageId = 0;
+
 const messages = [
     {
       text: "Hi there!",
       user: "Amando",
-      added: new Date()
+      added: new Date(),
+      id: messageId++,
     },
     {
       text: "Hello World!",
       user: "Charles",
-      added: new Date()
+      added: new Date(),
+      id: messageId++,
     }
   ];
   
@@ -48,7 +52,14 @@ app.post("/new", (req, res) => {
     // parse data from inputs
     const name = req.body.name;
     const message = req.body.message;
-    messages.push({ text : message, user : name, added : new Date() } );
+    messages.push({ text : message, user : name, added : new Date(), id : messageId++ } );
     // send user back to index
     res.redirect('/');
 });
+
+// get req message details
+app.get("/details/:id", (req, res) => {
+    const { id } = req.params;
+    const message = messages.find(message => message.id === Number(id));
+    res.render("details", {message : message});
+})
