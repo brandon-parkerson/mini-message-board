@@ -6,19 +6,19 @@ CREATE TABLE IF NOT EXISTS messages (
     name VARCHAR ( 255 ), message VARCHAR ( 255 )
 );
 
-INSERT INTO messages (name)
+INSERT INTO messages (name, message)
 VALUES
-    ('Brandon');
-
-INSERT INTO messages (message)
-VALUES
-    ('Hello from Tampere!');
+    ('Brandon', 'Hello from Tampere!');
 `;
 
 async function main() {
     console.log("seeding...");
     const client = new Client({
-        connectionString: process.env.DB_URL,
+        user: 'postgres',
+        host: 'hopper.proxy.rlwy.net',
+        database: 'railway',
+        password: 'PHFdzzOnOyuFMCgVUCZiOeJfwhDDCBWc',
+        port: 41523,
     });
     await client.connect();
     await client.query(SQL);
