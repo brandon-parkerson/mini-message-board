@@ -1,9 +1,8 @@
 const { Pool } = require("pg");
 
 module.exports = new Pool({
-    host: process.env.HOST,
-    user: process.env.USER,
-    database: process.env.DB_URL,
-    password: process.env.PASSWORD,
-    port: process.env.DB_PORT
-})
+    connectionString: process.env.DB_URL,  // Use the entire DB_URL as a single connection string
+    ssl: {
+        rejectUnauthorized: false,  // Important for Railway connections
+    },
+});
