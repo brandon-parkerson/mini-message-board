@@ -11,7 +11,7 @@
     <a href="new">New Message</a>
     <ul>
         <% messages.forEach((message) => { %>
-            <%- include('messages/message', {message : message}); %>
+            <li><%= message.name %>:<%= message.message %></li>
         <% }); %>
     </ul>
 </body>
