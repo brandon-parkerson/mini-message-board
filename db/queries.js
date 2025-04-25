@@ -1,5 +1,10 @@
 const pool = require("./pool");
 
+// Test DB connection immediately
+pool.query('SELECT NOW()')
+  .then(res => console.log('Database connected at:', res.rows[0].now))
+  .catch(err => console.error('Database connection failed:', err));
+
 async function getAllMessages() {
     try {
         const { rows } = await pool.query("SELECT * FROM messages");
