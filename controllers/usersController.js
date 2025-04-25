@@ -1,5 +1,5 @@
 const db = require("../db/queries");
-const { post } = require("../routes/usersRouter");
+
 
 async function getIndex(req, res) {
     let messages;
