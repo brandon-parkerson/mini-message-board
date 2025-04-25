@@ -14,16 +14,12 @@ VALUES
 async function main() {
     console.log("seeding...");
     const client = new Client({
-        user: 'postgres',
-        host: 'hopper.proxy.rlwy.net',
-        database: 'railway',
-        password: 'PHFdzzOnOyuFMCgVUCZiOeJfwhDDCBWc',
-        port: 41523,
+      connectionString: "postgresql://bkpkp1996:725Bp6758@localhost:5432/top_users",
     });
     await client.connect();
     await client.query(SQL);
     await client.end();
     console.log("done");
-}
+  }
 
 main();
